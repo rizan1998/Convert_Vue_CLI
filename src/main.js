@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.css'; //bootstrap css
 import 'bootstrap'; //bootstap js
 
 import axios from 'axios';
-axios.defaults.baseURL = 'http://127.0.0.1:8001/api';
+axios.defaults.baseURL = 'http://127.0.0.1:8000/api';
 
 import VueToast from 'vue-toast-notification';
 // Import one of the available themes

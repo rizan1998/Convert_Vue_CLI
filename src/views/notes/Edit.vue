@@ -334,7 +334,7 @@
 
 <script>
 import axios from "axios";
-import VueToast from "vue-toast-notification";
+import "vue-toast-notification/dist/theme-sugar.css";
 export default {
   data() {
     return {
@@ -378,9 +378,12 @@ export default {
       );
       if (response.status == 200) {
         console.log(response.data);
-        VueToast.$toast.success(response.data.message, {
+        this.$toasted.show(response.data.message, {
           // override the global option
           position: "top-right",
+          type: "success",
+          icon: "error_outline",
+          duration: 3000,
         });
         this.$router.push("/notes/table");
       }

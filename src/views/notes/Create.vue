@@ -7,7 +7,11 @@
             <h3>create new notes</h3>
           </div>
           <div class="card-body">
-            <form action="#" @submit.prevent="store">
+            <form
+              action="#"
+              @submit.prevent="store"
+              enctype="multipart/form-data"
+            >
               <div class="form-group">
                 <label for="title">Title</label>
                 <input
@@ -49,270 +53,32 @@
                   {{ theErrors.description[0] }}
                 </div>
               </div>
+              <img
+                v-bind:src="imagePreview"
+                width="100"
+                height="100"
+                v-show="showPreview"
+              />
+              <div v-if="theErrors.picture" class="mt-2 text-danger">
+                {{ theErrors.picture[0] }}
+              </div>
+              <div class="form-group">
+                <label for="image">Image</label>
+                <input
+                  type="file"
+                  class="form-control"
+                  id="picture"
+                  @change="onFileChange"
+                  name="picture"
+                />
+              </div>
+
               <button
                 type="submit"
                 class="btn btn-primary -flex align-items-center"
               >
                 Create Note !
-
-                <template v-if="loadingSave">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                    style="
-                      margin: auto;
-                      background: none;
-                      display: inline;
-                      shape-rendering: auto;
-                    "
-                    width="30px"
-                    height="30px"
-                    viewBox="0 0 100 100"
-                    preserveAspectRatio="xMidYMid"
-                  >
-                    <g transform="translate(80,50)">
-                      <g transform="rotate(0)">
-                        <circle
-                          cx="0"
-                          cy="0"
-                          r="6"
-                          fill="#1d3f72"
-                          fill-opacity="1"
-                        >
-                          <animateTransform
-                            attributeName="transform"
-                            type="scale"
-                            begin="-0.875s"
-                            values="1.5 1.5;1 1"
-                            keyTimes="0;1"
-                            dur="1s"
-                            repeatCount="indefinite"
-                          ></animateTransform>
-                          <animate
-                            attributeName="fill-opacity"
-                            keyTimes="0;1"
-                            dur="1s"
-                            repeatCount="indefinite"
-                            values="1;0"
-                            begin="-0.875s"
-                          ></animate>
-                        </circle>
-                      </g>
-                    </g>
-                    <g
-                      transform="translate(71.21320343559643,71.21320343559643)"
-                    >
-                      <g transform="rotate(45)">
-                        <circle
-                          cx="0"
-                          cy="0"
-                          r="6"
-                          fill="#1d3f72"
-                          fill-opacity="0.875"
-                        >
-                          <animateTransform
-                            attributeName="transform"
-                            type="scale"
-                            begin="-0.75s"
-                            values="1.5 1.5;1 1"
-                            keyTimes="0;1"
-                            dur="1s"
-                            repeatCount="indefinite"
-                          ></animateTransform>
-                          <animate
-                            attributeName="fill-opacity"
-                            keyTimes="0;1"
-                            dur="1s"
-                            repeatCount="indefinite"
-                            values="1;0"
-                            begin="-0.75s"
-                          ></animate>
-                        </circle>
-                      </g>
-                    </g>
-                    <g transform="translate(50,80)">
-                      <g transform="rotate(90)">
-                        <circle
-                          cx="0"
-                          cy="0"
-                          r="6"
-                          fill="#1d3f72"
-                          fill-opacity="0.75"
-                        >
-                          <animateTransform
-                            attributeName="transform"
-                            type="scale"
-                            begin="-0.625s"
-                            values="1.5 1.5;1 1"
-                            keyTimes="0;1"
-                            dur="1s"
-                            repeatCount="indefinite"
-                          ></animateTransform>
-                          <animate
-                            attributeName="fill-opacity"
-                            keyTimes="0;1"
-                            dur="1s"
-                            repeatCount="indefinite"
-                            values="1;0"
-                            begin="-0.625s"
-                          ></animate>
-                        </circle>
-                      </g>
-                    </g>
-                    <g
-                      transform="translate(28.786796564403577,71.21320343559643)"
-                    >
-                      <g transform="rotate(135)">
-                        <circle
-                          cx="0"
-                          cy="0"
-                          r="6"
-                          fill="#1d3f72"
-                          fill-opacity="0.625"
-                        >
-                          <animateTransform
-                            attributeName="transform"
-                            type="scale"
-                            begin="-0.5s"
-                            values="1.5 1.5;1 1"
-                            keyTimes="0;1"
-                            dur="1s"
-                            repeatCount="indefinite"
-                          ></animateTransform>
-                          <animate
-                            attributeName="fill-opacity"
-                            keyTimes="0;1"
-                            dur="1s"
-                            repeatCount="indefinite"
-                            values="1;0"
-                            begin="-0.5s"
-                          ></animate>
-                        </circle>
-                      </g>
-                    </g>
-                    <g transform="translate(20,50.00000000000001)">
-                      <g transform="rotate(180)">
-                        <circle
-                          cx="0"
-                          cy="0"
-                          r="6"
-                          fill="#1d3f72"
-                          fill-opacity="0.5"
-                        >
-                          <animateTransform
-                            attributeName="transform"
-                            type="scale"
-                            begin="-0.375s"
-                            values="1.5 1.5;1 1"
-                            keyTimes="0;1"
-                            dur="1s"
-                            repeatCount="indefinite"
-                          ></animateTransform>
-                          <animate
-                            attributeName="fill-opacity"
-                            keyTimes="0;1"
-                            dur="1s"
-                            repeatCount="indefinite"
-                            values="1;0"
-                            begin="-0.375s"
-                          ></animate>
-                        </circle>
-                      </g>
-                    </g>
-                    <g
-                      transform="translate(28.78679656440357,28.786796564403577)"
-                    >
-                      <g transform="rotate(225)">
-                        <circle
-                          cx="0"
-                          cy="0"
-                          r="6"
-                          fill="#1d3f72"
-                          fill-opacity="0.375"
-                        >
-                          <animateTransform
-                            attributeName="transform"
-                            type="scale"
-                            begin="-0.25s"
-                            values="1.5 1.5;1 1"
-                            keyTimes="0;1"
-                            dur="1s"
-                            repeatCount="indefinite"
-                          ></animateTransform>
-                          <animate
-                            attributeName="fill-opacity"
-                            keyTimes="0;1"
-                            dur="1s"
-                            repeatCount="indefinite"
-                            values="1;0"
-                            begin="-0.25s"
-                          ></animate>
-                        </circle>
-                      </g>
-                    </g>
-                    <g transform="translate(49.99999999999999,20)">
-                      <g transform="rotate(270)">
-                        <circle
-                          cx="0"
-                          cy="0"
-                          r="6"
-                          fill="#1d3f72"
-                          fill-opacity="0.25"
-                        >
-                          <animateTransform
-                            attributeName="transform"
-                            type="scale"
-                            begin="-0.125s"
-                            values="1.5 1.5;1 1"
-                            keyTimes="0;1"
-                            dur="1s"
-                            repeatCount="indefinite"
-                          ></animateTransform>
-                          <animate
-                            attributeName="fill-opacity"
-                            keyTimes="0;1"
-                            dur="1s"
-                            repeatCount="indefinite"
-                            values="1;0"
-                            begin="-0.125s"
-                          ></animate>
-                        </circle>
-                      </g>
-                    </g>
-                    <g
-                      transform="translate(71.21320343559643,28.78679656440357)"
-                    >
-                      <g transform="rotate(315)">
-                        <circle
-                          cx="0"
-                          cy="0"
-                          r="6"
-                          fill="#1d3f72"
-                          fill-opacity="0.125"
-                        >
-                          <animateTransform
-                            attributeName="transform"
-                            type="scale"
-                            begin="0s"
-                            values="1.5 1.5;1 1"
-                            keyTimes="0;1"
-                            dur="1s"
-                            repeatCount="indefinite"
-                          ></animateTransform>
-                          <animate
-                            attributeName="fill-opacity"
-                            keyTimes="0;1"
-                            dur="1s"
-                            repeatCount="indefinite"
-                            values="1;0"
-                            begin="0s"
-                          ></animate>
-                        </circle>
-                      </g>
-                    </g>
-                    <!-- [ldio] generated by https://loading.io/ -->
-                  </svg>
-                </template>
+                <SaveAnimation v-if="loadingSave"></SaveAnimation>
               </button>
             </form>
           </div>
@@ -324,19 +90,27 @@
 
 <script>
 import axios from "axios";
-import VueToast from "vue-toast-notification";
+// import VueToast from "vue-toast-notification";
 import "vue-toast-notification/dist/theme-sugar.css";
+import SaveAnimation from "../../components/saveAnimation";
 export default {
+  components: {
+    SaveAnimation,
+  },
   data() {
     return {
       form: {
         title: "",
         subject: "",
         description: "",
+        picture: null,
       },
+      errPicture: "",
       subjects: [],
       theErrors: [],
       loadingSave: false,
+      imagePreview: null,
+      showPreview: false,
     };
   },
 
@@ -353,37 +127,118 @@ export default {
         this.subjects = response.data;
       }
     },
+
+    onFileChange(event) {
+      /*
+    Set the local file variable to what the user has selected.
+    */
+      console.log(event.target.files[0]);
+      this.form.picture = event.target.files[0];
+
+      /*
+    Initialize a File Reader object
+    */
+      let reader = new FileReader();
+
+      /*
+    Add an event listener to the reader that when the file
+    has been loaded, we flag the show preview as true and set the
+    image to be what was read from the reader.
+    */
+      reader.addEventListener(
+        "load",
+        function () {
+          this.showPreview = true;
+          this.imagePreview = reader.result;
+        }.bind(this),
+        false
+      );
+
+      /*
+    Check to see if the file is not empty.
+    */
+      if (this.form.picture) {
+        /*
+            Ensure the file is an image file.
+        */
+        if (/\.(jpe?g|png|gif)$/i.test(this.form.picture.name)) {
+          console.log("here");
+          /*
+            Fire the readAsDataURL method which will read the file in and
+            upon completion fire a 'load' event which we will listen to and
+            display the image in the preview.
+            */
+          reader.readAsDataURL(this.form.picture);
+        }
+      }
+    },
+
     async store() {
-      this.loadingSave = true;
+      // if (this.form.picture) {
       try {
-        let response = await axios.post("notes/create-new-note", this.form);
+        this.loadingSave = true;
+
+        let formData = new FormData();
+        formData.append("picture", this.form.picture);
+        formData.append("title", this.form.title);
+        formData.append("description", this.form.description);
+        formData.append("subject", this.form.subject);
+
+        // axios
+        //   .post("/notes/create-new-note", formData)
+        //   .then((res) => {
+        //     console.log(res);
+        //   })
+        //   .catch((error) => {
+        //     console.log(error);
+        //   });
+        const config = {
+          headers: {
+            "content-type": "multipart/form-data",
+          },
+        };
+
+        let response = await axios.post(
+          "notes/create-new-note",
+          formData,
+          config
+        );
+
         if (response.status == 200) {
           console.log(response.data);
           // this.form = [];
           this.form.title = "";
           this.form.subject = "";
           this.form.description = "";
+          this.form.picture = "";
+           this.showPreview = false;
           this.theErrors = [];
           // this.$toast.open({
           //   message: response.data.message,
           //   position: top,
           // });
           this.loadingSave = false;
+          // existingObj.success = res.data.success;
           this.$toasted.show(response.data.message, {
             type: "success",
-            icon: "error_outline",
+            icon: "error_outline", //font awesome
             duration: 3000,
           });
+          this.$router.push("/notes/table");
         }
       } catch (e) {
         this.loadingSave = false;
-        //console.log(e.response.data.errors);
-        VueToast.$toast.error("somthing went wrong", {
+        console.log(e.response.data.errors);
+        this.$toasted.error("somthing went wrong", {
           // override the global option
           position: "top-right",
         });
         this.theErrors = e.response.data.errors;
       }
+      // }
+      // else {
+      //   this.errPicture = "data gambar kosong dan harus diisi";
+      // }
     },
   },
 };
