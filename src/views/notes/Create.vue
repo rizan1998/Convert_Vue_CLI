@@ -211,7 +211,7 @@ export default {
           this.form.subject = "";
           this.form.description = "";
           this.form.picture = "";
-           this.showPreview = false;
+          this.showPreview = false;
           this.theErrors = [];
           // this.$toast.open({
           //   message: response.data.message,

@@ -18,6 +18,12 @@ import 'vue-toast-notification/dist/theme-sugar.css';
 
 Vue.use(VueToast);
 
+Vue.component('pagination', require('laravel-vue-pagination'));
+
+import 'vuejs-datatable/dist/themes/bootstrap-4.esm';
+import { VuejsDatatableFactory } from 'vuejs-datatable';
+Vue.use(VuejsDatatableFactory);
+
 
 Vue.config.productionTip = false
 
